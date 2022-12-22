@@ -57,6 +57,30 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date(),
       },
+      {
+        name: "Ultron",
+        email: "ultron@u.com",
+        password: bcrypt.hashSync("marvel", 10),
+        serviceProvider: false,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        name: "Tango",
+        email: "tango@t.com",
+        password: bcrypt.hashSync("wafer", 10),
+        serviceProvider: false,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        name: "Syrax",
+        email: "syrax@s.com",
+        password: bcrypt.hashSync("dragon", 10),
+        serviceProvider: false,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
     ]);
   },
 
