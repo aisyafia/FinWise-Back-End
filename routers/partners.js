@@ -10,6 +10,7 @@ router.get("/", authMiddleware, async (req, res) => {
   try {
     const partners = await User.findAll({
       order: ["id"],
+      where: { serviceProvider: true },
     });
     return res.status(200).send(partners);
   } catch (e) {
