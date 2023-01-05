@@ -21,7 +21,7 @@ app.post("/upload-success", (req, res) => {
   console.log("files:", req.files);
   // console.log("pdf?", req);
   if (!req.files || !req.files.pdfFile) {
-    console.log("HERE");
+    // console.log("HERE");
     res.status(400).send(`Something went wrong, please try again`);
     res.end();
   }

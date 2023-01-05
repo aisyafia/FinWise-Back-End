@@ -7,6 +7,11 @@ const User = require("../models").user;
 const router = new Router();
 
 router.get("/", authMiddleware, async (req, res) => {
+  if (!req.user) {
+    res
+      .status(400)
+      .send(`You are not authenticated to access this information`);
+  }
   try {
     const partners = await User.findAll({
       order: ["id"],
@@ -16,6 +21,11 @@ router.get("/", authMiddleware, async (req, res) => {
   } catch (e) {
     console.log("An error occur", e);
   }
+});
+
+router.get("/:id", authMiddleware, async (req, res) => {
+  const partnerById = await User.findByPk(req.params.id);
+  return res.status(200).send(partnerById);
 });
 
 module.exports = router;
