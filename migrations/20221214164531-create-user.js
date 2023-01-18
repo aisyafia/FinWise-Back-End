@@ -23,6 +23,7 @@ module.exports = {
       },
       serviceProvider: {
         type: Sequelize.BOOLEAN,
+        allowNull: false,
       },
       companyName: {
         type: Sequelize.STRING,

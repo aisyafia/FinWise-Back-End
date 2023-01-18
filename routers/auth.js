@@ -37,18 +37,44 @@ router.post("/login", async (req, res, next) => {
 
 //signup
 router.post("/signup", async (req, res) => {
-  const { email, password, name, serviceProvider } = req.body;
+  const {
+    name,
+    email,
+    password,
+    serviceProvider,
+    companyName,
+    companyEmail,
+    companyWebsite,
+    companyPhoneNumber,
+    companyLocation,
+  } = req.body;
   if (!email || !password || !name) {
     return res.status(400).send("Please provide an email, password and a name");
   }
-
+  // console.log("end point works", req.body);
+  // res.send({ name, email, password });
   try {
-    const newUser = await User.create({
-      email,
-      password: bcrypt.hashSync(password, SALT_ROUNDS),
-      name,
-      serviceProvider,
-    });
+    let newUser;
+    if (serviceProvider === false) {
+      newUser = await User.create({
+        name,
+        email,
+        password: bcrypt.hashSync(password, SALT_ROUNDS),
+        serviceProvider,
+      });
+    } else {
+      newUser = await User.create({
+        name,
+        email,
+        password: bcrypt.hashSync(password, SALT_ROUNDS),
+        serviceProvider,
+        companyName,
+        companyEmail,
+        companyWebsite,
+        companyPhoneNumber,
+        companyLocation,
+      });
+    }
 
     delete newUser.dataValues["password"]; // don't send back the password hash
 
