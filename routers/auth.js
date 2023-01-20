@@ -54,7 +54,6 @@ router.post("/signup", async (req, res) => {
   // console.log("end point works", req.body);
   // res.send({ name, email, password });
   try {
-    let newUser;
     if (serviceProvider === false) {
       newUser = await User.create({
         name,
@@ -62,6 +61,7 @@ router.post("/signup", async (req, res) => {
         password: bcrypt.hashSync(password, SALT_ROUNDS),
         serviceProvider,
       });
+      console.log("NEW USER CREATED");
     } else {
       newUser = await User.create({
         name,
@@ -74,6 +74,7 @@ router.post("/signup", async (req, res) => {
         companyPhoneNumber,
         companyLocation,
       });
+      console.log("PARTNER CREATED");
     }
 
     delete newUser.dataValues["password"]; // don't send back the password hash
