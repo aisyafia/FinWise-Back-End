@@ -40,6 +40,9 @@ module.exports = {
       companyLocation: {
         type: Sequelize.STRING,
       },
+      companyLogo: {
+        type: Sequelize.STRING,
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
